@@ -1,0 +1,124 @@
+.navbar
+{
+    background-color: gainsboro;
+}
+
+.glk
+{
+    font-size: 30px;
+    color: ghostwhite;
+}
+.comp
+{
+    font-size: 20px;
+    color: darkblue;
+}
+.title
+{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+}
+
+
+.search>form>input[type="text"]
+{
+   
+   
+border-top-left-radius: 13px;
+border-bottom-left-radius: 13px;
+    box-shadow: 10px darkgray;
+    outline: none;
+    border: none;
+    margin-left: 5px;
+    padding-top: 2px;
+    padding-bottom: 3px;
+    
+}
+div>form>button
+{
+    border: none;
+    outline: none;
+    height: 29px;
+    
+}
+div>form>button:hover{
+    border: none;
+    outline: none;
+}
+.search
+{
+    display: flex;
+    align-items: center;
+}
+.sgiw
+{
+    display: flex;
+    justify-content: space-between;
+    margin-right: 10px;
+    
+    
+}
+.modaltitle
+{
+    color: blue;
+    font-size: 20px;
+    font-weight: 1400;
+
+}
+.singIn__container
+{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+
+}
+.singIn
+{
+    display: flex;
+    flex-direction: column;
+}
+.phoneNumberCont
+{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+}
+.phoneNumberCont>div>select
+{
+    
+    height: 40px;
+    cursor: pointer;
+    
+   
+   
+    
+}
+
+.phoneNumberCont>div>input
+{
+    margin-left: 5px;
+    height: 40px;
+    padding-left: 10px;
+}
+
+.bttn>button
+{
+    border: none;
+    outline-width: none;
+    padding-top: 5px;
+    padding: 5px,5px,5px,5px;
+    width: 265px;
+    margin-top: 20px;
+    background-color: rgba(60, 90, 153, 0.1);
+}
+
+
+
+
+
+
+
