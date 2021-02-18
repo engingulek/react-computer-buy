@@ -1,0 +1,43 @@
+.modaltitle
+{
+    color: blue;
+    font-size: 20px;
+
+}
+
+.singIn__container
+{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+
+}
+.singIn
+{
+    display: flex;
+    flex-direction: column;
+}
+
+.title
+{
+    color: black;
+    font-weight: 950px;
+    font-size: 23px;
+    margin-bottom: 5px;
+}
+
+.singInForm>form>div
+{
+    display: flex;
+    flex-direction: column;
+}
+
+.singInForm>form>div>label{
+    font-size: 16px;
+    margin-top: 2px;
+}
+.termsofUse>div>label
+{
+    margin-left:8px;
+}

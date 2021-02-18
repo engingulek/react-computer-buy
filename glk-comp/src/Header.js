@@ -3,46 +3,39 @@ import SearchIcon from "@material-ui/icons/Search";
 import "./Header.css";
 
 import {
-  Collapse,
-  Navbar,
-  NavbarToggler,
-  NavbarBrand,
-  Nav,
-  NavItem,
-  NavLink,
-  UncontrolledDropdown,
-  DropdownToggle,
-  DropdownMenu,
-  DropdownItem,
-  NavbarText,
   Button,
   Modal,
   ModalHeader,
   ModalBody,
   ModalFooter,
-  InputGroup,
-  InputGroupAddon,
-  InputGroupText,
-  Input,
+  
 } from "reactstrap";
-import PhoneIcon from '@material-ui/icons/Phone';
+import SingIn from "./SingIn";
+import SingUp from "./SingUp";
+
 
 function Header() {
   const [modal, setModal] = useState(false);
+  const [singup,setSingup] =useState(false)
   const toggle = () => {
     setModal(!modal);
     console.log(modal);
-  };
+  }
+  
 
   const singIn = () => {
-    console.log("Sing In");
     setModal(!modal);
   };
 
-  const singUp = () => {
-    console.log("Sing Up");
-    setModal(!modal);
+  const singUpB = () => {
+    console.log("Merhaba");
+    setSingup(!singup);
+    toggle();
   };
+  const create=()=>
+  {
+    setSingup(!singup)
+  }
 
   return (
     <div className="header">
@@ -62,7 +55,7 @@ function Header() {
           </div>
 
           <button
-            onClick={toggle}
+            onClick={singIn}
             type="button"
             className="btn btn-primary"
             data-toggle="modal"
@@ -78,40 +71,36 @@ function Header() {
             </div>
           </ModalHeader>
           <ModalBody>
-            <div className="singIn__container">
-              <div className="singIn">
-                <div className="singInForm">
-                  <div className="phoneNumberCont">
-                    <div>
-                      <select>
-                        <option value="0">+90</option>
-                        <option value="1">+190</option>
-                        <option value="2">+230</option>
-                      </select>
-
-                      <input type="text" maxLength="10" placeholder="Phone Number" />
-                    </div>
-                    <div className="phoneCont bttn">
-                      <button> Continue with phone</button>
-                    </div>
-                    <hr/>
-                    <div className="facebookCont bttn">
-                      <button>Continue with Facebook</button>
-                    </div>
-                    <div className="googleCont bttn">
-                      <button>Continue with Google</button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+          <SingIn/>
+          
+           
           </ModalBody>
           <ModalFooter>
-            <Button color="secondary" onClick={singUp}>
+            <Button color="secondary" onClick={singUpB}>
               SingUp
             </Button>
           </ModalFooter>
         </Modal>
+
+        <Modal isOpen={singup} toggle={create}>
+          <ModalHeader toggle={create}>
+            <div className="modaltitle">
+              <span>Sing In</span>
+            </div>
+          </ModalHeader>
+          <ModalBody>
+          <SingUp/>
+          
+           
+          </ModalBody>
+          <ModalFooter>
+            <Button color="secondary" onClick={create}>
+              Create
+            </Button>
+          </ModalFooter>
+        </Modal>
+
+        
       </div>
     </div>
   );
