@@ -1,6 +1,7 @@
 import React from 'react';
 
 import './App.css';
+import Filter from './Filter';
 import Header from './Header';
 
 
@@ -9,6 +10,7 @@ function App() {
     <div className="App">
     
     <Header/>
+    <Filter/>
      </div>
   );
 }

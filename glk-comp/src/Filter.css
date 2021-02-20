@@ -1,0 +1,39 @@
+.collapseButton
+{
+    border: none;
+    outline-width: none;
+    padding-top: 5px;
+    
+    width: 160px;
+    margin-top: 20px;
+    background-color: rgba(60, 90, 153, 0.1);
+
+}
+
+.card
+{
+    width: 160px;
+    
+    
+}
+
+.checkboxs
+{
+    margin-top: 10px;
+    margin-left: 12px;
+}
+.checkboxs>form
+{ 
+    display: flex;
+    flex-direction: column;
+}
+
+label
+{
+    margin-left: 10px;
+}
+
+.details
+{
+    width: 10px;
+}
