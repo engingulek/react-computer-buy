@@ -1,43 +1,55 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 import "./Filter.css";
 import Collapses from "./Collapses";
 function Filter() {
-  
-
-  const filter =[
-      {
-          "filterName":"Msi"
-      },
-      {
-        "filterName":"lenova"
+ 
+  const filter = [
+    {
+      filterName: "Brans",
+      subtitle: [
+        {
+          name: "Lenova",
+        },
+        {
+          name: "Asus",
+        },
+      ],
     },
     {
-        "filterName":"Mi"
-    }
-  ]
-  
+      filterName: "RAM",
+      subtitle: [
+        {
+          name: "8",
+        },
+        {
+          name: "16",
+        },
+      ],
+    },
+  ];
 
-
-
-
+ 
 
   return (
     <div className="filter">
       <div className="filterContainer">
-      {
-          filter.map((filter,id)=>(
-            <Collapses key={id} filter={filter.filterName}/>
-
-          ))
-      }
-      
-      
-      
-
-      
      
+        
+        <Collapses 
+        filter={filter}
        
+          
+        
+        />
+        
+     
+      
+      
+   
+     
+        
+      
       </div>
     </div>
   );

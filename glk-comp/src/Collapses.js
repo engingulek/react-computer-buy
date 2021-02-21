@@ -1,60 +1,70 @@
-
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Collapse } from "reactstrap";
 
-
 function Collapses({filter}) {
-    const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
+
+
+  const toggle = (e) => {
+    setIsOpen(!isOpen);
+  };
+  
   
 
-    const toggle = (e) =>
-    {
-      setIsOpen(!isOpen);
-      console.log(e.target.id)
-   
+  return (
+    <div>
+      <div className="markalar">
+      <div>
+      {
+      filter.map((item)=>
+        <div><button className="collapseButton" onClick={toggle}>{item.filterName}</button>
        
-     
-    }
-    return (
-        <div>
-        <div className="markalar">
-       
-        
-        <button className="collapseButton" onClick={toggle}>
-        {filter}
-        </button>
-
-  
-     
-        <Collapse isOpen={isOpen}>
-        <div className="card">
-          <div className="cardbody">
-            <div className="checkboxs">
-              <form>
-                <div>
-                  <input type="checkbox" name="all" />
-                  <label for="all">Hepsi</label>
-                </div>
-                <div>
-        <input type="checkbox" name="ka" />
-        <label htmlFor="ka">Lenova</label>
-      </div>
-              </form>
+        {
+          item.subtitle.map((sub)=>
+         
+          <Collapse isOpen={isOpen}>
+          <div className="card">
+            <div className="cardbody">
+              <div className="checkboxs">
+                <form>
+                  <div>
+                    <input type="checkbox" name="all" />
+                    <label htmlfor="all">{sub.name}</label>
+                  </div>
+                </form>
+              </div>
             </div>
           </div>
-        </div>
-      </Collapse>
-        
+        </Collapse>
+          
+          )
 
-   
- 
-      
-      
-    </div>
-            
+        }
+        
         </div>
-    )
+      
+        )
+      }
+      
+      
+    
+        
+       
+         
+           
+           
+         
+        
+        </div>
+       
+     
+
+       
+
+       
+      </div>
+    </div>
+  );
 }
 
-export default Collapses
-
+export default Collapses;
