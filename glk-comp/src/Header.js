@@ -63,6 +63,7 @@ function Header() {
           >
             SingIn
           </button>
+          
         </div>
         <Modal isOpen={modal} toggle={toggle}>
           <ModalHeader toggle={toggle}>
@@ -91,14 +92,21 @@ function Header() {
           <ModalBody>
           <SingUp/>
           
-           
+          
           </ModalBody>
           <ModalFooter>
             <Button color="secondary" onClick={create}>
               Create
             </Button>
+             
           </ModalFooter>
+         
         </Modal>
+        <div className="cart">
+        <Button color="success"><span>Cart</span></Button>
+        </div>
+       
+       
 
         
       </div>
