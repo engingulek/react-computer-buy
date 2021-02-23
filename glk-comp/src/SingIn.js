@@ -1,7 +1,13 @@
 import React from 'react'
 import "./SingIn.css"
-
+import { auth, providerGoogle } from "./firebase";
 function SingIn() {
+  const login=(e)=>
+  {
+    e.preventDefault();
+    auth.signInWithPopup(providerGoogle).catch((error)=>alert("Hata"))
+  }
+
     return (
         <div className="singIn__container">
         <div className="singIn">
@@ -22,7 +28,7 @@ function SingIn() {
               <hr/>
               
               <div className="googleCont bttn">
-                <button>Continue with Google</button>
+                <button onClick={login}>Continue with Google</button>
               </div>
             </div>
           </div>

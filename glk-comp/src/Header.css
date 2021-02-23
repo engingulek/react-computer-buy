@@ -73,9 +73,14 @@ div>form>button:hover{
     font-weight: 500;
     
 }
-
-
-
+.link{
+    color: white;
+}
+.link:hover
+{
+    text-decoration: none;
+    color: white;
+}
 
 
 

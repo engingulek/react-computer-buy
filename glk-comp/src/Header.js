@@ -1,6 +1,9 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import SearchIcon from "@material-ui/icons/Search";
 import "./Header.css";
+import {useSelector,useDispatch} from "react-redux"
+
+
 
 import {
   Button,
@@ -10,10 +13,18 @@ import {
   ModalFooter,
   
 } from "reactstrap";
+
 import SingIn from "./SingIn";
 import SingUp from "./SingUp";
 
-
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
+import { login, logout, selectUser } from "./features/userSlice";
+import { auth ,providerGoogle} from "./firebase";
 function Header() {
   const [modal, setModal] = useState(false);
   const [singup,setSingup] =useState(false)
@@ -28,7 +39,7 @@ function Header() {
   };
 
   const singUpB = () => {
-    console.log("Merhaba");
+    
     setSingup(!singup);
     toggle();
   };
@@ -36,6 +47,35 @@ function Header() {
   {
     setSingup(!singup)
   }
+
+  const user = useSelector(selectUser);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+  auth.onAuthStateChanged(authUser=>{
+    if(authUser)
+    {
+      dispatch(login({
+        uid : authUser.uid,
+        displayName :authUser.displayName
+      }))
+    }
+    else
+    {
+      dispatch(logout({
+        uid:null,
+        displayName:null
+
+      }))
+    }
+  })
+  }, [dispatch])
+
+  const singOut=()=>
+  {
+   auth.signOut()
+  }
+
 
   return (
     <div className="header">
@@ -53,16 +93,34 @@ function Header() {
               </button>
             </form>
           </div>
-
-          <button
+          {
+            user ?  <button
+            onClick={singOut}
+            type="button"
+            className="btn btn-danger"
+            data-toggle="modal"
+            data-target="#exampleModal"
+          >
+            Exit
+          </button>:
+         ( <button
             onClick={singIn}
             type="button"
             className="btn btn-primary"
             data-toggle="modal"
             data-target="#exampleModal"
           >
-            SingIn
-          </button>
+           SingIn
+          </button>)
+          }
+          
+            
+        
+         
+          
+
+
+         
           
         </div>
         <Modal isOpen={modal} toggle={toggle}>
@@ -103,7 +161,7 @@ function Header() {
          
         </Modal>
         <div className="cart">
-        <Button color="success"><span>Cart</span></Button>
+        <Button color="success" ><span><Link className="link" to="/cart">Cart</Link></span></Button>
         </div>
        
        
