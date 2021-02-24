@@ -13,50 +13,41 @@ function Collapses({ filter,sub }) {
     <div>
       <div className="markalar">
         <div>
-          {filter.map((filter,id) => (
-            <div>
-              <button key={id} className="collapseButton" onClick={toggle}>
-                 {filter.filtername}
-                
+
+        {
+          db.collection("filter").doc("1").collection("subtitle").onSnapshot((onSnapshot)=>(
+            onSnapshot.docs.map((doc)=>(
+            
+              <button  className="collapseButton" onClick={toggle}>
+                 
+                {doc.data().subtitle}
               </button>
-              {
-                sub.map((value,index)=>(
-                  <Collapse isOpen={isOpen}>
-                <div className="card">
-                  <div className="cardbody">
-                    <div className="checkboxs">
-                      <form>
-                      {
-                        id===0?<div>
-                          <input type="checkbox" name="all" />
-                          <label htmlfor="all">{value.subtitle}</label>
-                        </div>:null
-                       
-                       
-                      }
-                      
-                      </form>
-                    </div>
-                  </div>
-                </div>
-              </Collapse>
+            ))
+          ))
+        }
+
+   
+          
+            
+              
+                
+                 
 
 
 
-                ))
-              }
+               
 
              
 
               
             </div>
-          ))}
+          
         </div>
       </div>
   
 
      
-    </div>
+    
   );
 }
 

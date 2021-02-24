@@ -23,7 +23,7 @@ function Filter() {
           db.collection("filter").doc(doc.id).collection("subtitle").onSnapshot((onSnapshot)=>{
             onSnapshot.forEach((doc)=>{
               subtitle.push(doc.data())
-              console.log(doc.data())
+             
               
             })
           })
