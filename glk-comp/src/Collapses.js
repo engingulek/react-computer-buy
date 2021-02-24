@@ -1,41 +1,61 @@
 import React, { useEffect, useState } from "react";
 import { Collapse } from "reactstrap";
-
-function Collapses({ filter }) {
+import db from "./firebase";
+function Collapses({ filter,sub }) {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggle = (e) => {
     setIsOpen(!isOpen);
+  
   };
 
   return (
     <div>
       <div className="markalar">
         <div>
-          {filter.map((filter) => (
+          {filter.map((filter,id) => (
             <div>
-              <button className="collapseButton" onClick={toggle}>
-                {filter.filtername}
+              <button key={id} className="collapseButton" onClick={toggle}>
+                 {filter.filtername}
+                
               </button>
-
-              <Collapse isOpen={isOpen}>
+              {
+                sub.map((value,index)=>(
+                  <Collapse isOpen={isOpen}>
                 <div className="card">
                   <div className="cardbody">
                     <div className="checkboxs">
                       <form>
-                        <div>
+                      {
+                        id===0?<div>
                           <input type="checkbox" name="all" />
-                          <label htmlfor="all"></label>
-                        </div>
+                          <label htmlfor="all">{value.subtitle}</label>
+                        </div>:null
+                       
+                       
+                      }
+                      
                       </form>
                     </div>
                   </div>
                 </div>
               </Collapse>
+
+
+
+                ))
+              }
+
+             
+
+              
             </div>
           ))}
         </div>
       </div>
+  
+
+     
     </div>
   );
 }
