@@ -8,52 +8,38 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-
-  BrowserRouter
-} from "react-router-dom"
+  BrowserRouter,
+} from "react-router-dom";
 import CartDesign from "./CartDesign";
 
 function App() {
   return (
-    
     <div className="app">
       <div className="appContainer">
-      <BrowserRouter>
-
-      
-      <Switch>
-      <Route
-      exact
-      path="/">
-      <div className="header">
-          <Header />
-        </div>
-        <div className="body">
-        <div className="filter">
-          <Filter />
-        </div>
-        <div className="cardDesign">
-          <CardDesign />
-          <CardDesign />
-          <CardDesign />
-          <CardDesign />
-          <CardDesign />
-         
-        </div>
-        </div>
-
-      </Route>
-      <Route 
-      
-      path="/cart">
-        <CartDesign/>
-      </Route>
-      
-    </Switch>
-    </BrowserRouter>
-        
-
-        
+        <BrowserRouter>
+          <Switch>
+            <Route exact path="/">
+              <div className="header">
+                <Header />
+              </div>
+              <div className="body">
+                <div className="filter">
+                  <Filter />
+                </div>
+                <div className="cardDesign">
+                  <CardDesign />
+                  <CardDesign />
+                  <CardDesign />
+                  <CardDesign />
+                  <CardDesign />
+                </div>
+              </div>
+            </Route>
+            <Route path="/cart">
+              <CartDesign />
+            </Route>
+          </Switch>
+        </BrowserRouter>
       </div>
     </div>
   );

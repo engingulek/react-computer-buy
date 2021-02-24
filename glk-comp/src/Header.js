@@ -30,7 +30,7 @@ function Header() {
   const [singup,setSingup] =useState(false)
   const toggle = () => {
     setModal(!modal);
-    console.log(modal);
+   
   }
   
 
