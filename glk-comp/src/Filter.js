@@ -10,32 +10,7 @@ function Filter() {
   const [name, setFilterName] = useState([]);
   const [sub,setSub]=useState([]);
 
-  useEffect(() => {
-    const ref = db.collection("filter");
 
-    ref.onSnapshot((querySnapshot) => {
-      const items = [];
-      const subtitle =[];
-      querySnapshot.forEach((doc) => {
-        items.push(doc.data());
-        
-        
-          db.collection("filter").doc(doc.id).collection("subtitle").onSnapshot((onSnapshot)=>{
-            onSnapshot.forEach((doc)=>{
-              subtitle.push(doc.data())
-             
-              
-            })
-          })
-        
-        
-      });
-      setFilterName(items);
-      setSub(subtitle)
-    });
-
-  
-  }, []);
   return (
     <div className="filter">
       <div className="filterContainer">
@@ -45,8 +20,7 @@ function Filter() {
 
 
 
-         <Collapses filter={name}
-         sub={sub} /> 
+         <Collapses  /> 
        
       </div>
     </div>
