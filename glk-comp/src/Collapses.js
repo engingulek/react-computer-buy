@@ -4,8 +4,8 @@ import db from "./firebase";
 
 function Collapses() {
   const [isOpen, setIsOpen] = useState(false);
-  const [filtername, setFiltername] = useState([]);
-  const [subtitlel, setSubtitle] = useState([]);
+  const [filter, setFilter] = useState([]);
+ 
 
   const toggle = (e) => {
     setIsOpen(!isOpen);
@@ -13,25 +13,23 @@ function Collapses() {
   };
 
   useEffect(() => {
-    const subtitle = [];
+    
     db.collection("filter").onSnapshot((onSnapshot) => {
       const filternameitem = [];
       onSnapshot.forEach((doc) => {
         filternameitem.push(doc.data());
       });
-      setFiltername(filternameitem);
+      setFilter(filternameitem);
     });
 
-    // subtitlel.map((sub)=>{
-    //   console.log(sub)
-    // });
+    
   }, []);
   return (
     <div>
       <div className="markalar">
       <div>
         {
-          filtername.map((item)=>(
+          filter.map((item)=>(
           <>  <button className="collapseButton" onClick={toggle}>
             {item.filtername}
           </button>

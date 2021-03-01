@@ -1,39 +1,60 @@
-import React,{useState} from "react";
+import React,{useEffect, useState} from "react";
 import "./CardDesing.css";
 import Rating from "@material-ui/lab/Rating";
 import { Button } from 'reactstrap';
 import { Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import Information from "./Information";
+import db from "./firebase"
 
 function CardDesign() {
     const [modal,setModal] = useState(false)
+    const [productitem,setProductItem] = useState([])
 
 const infoToggle=()=>
 {
     setModal(!modal)
 
 }
+
+
+useEffect(() => {
+  db.collection("product").onSnapshot((onSnapshot)=>{
+    const productItems=[]
+    onSnapshot.forEach((product)=>{
+      productItems.push(product.data())
+    })
+
+    setProductItem(productItems)
+})
+
+
+  
+}, [])
   return (
+    
     <div className="cardDesign">
-      <div className="cardDesignContainer" >
+    {
+      productitem.map((product)=>(
+        <>
+        <div className="cardDesignContainer" >
         <div className="moreinfo" onClick={infoToggle}>
         <div className="cartImg">
           <img
-            src="https://market.miuiturkiye.net/image/catalog/10000%202.%20Nesil/pro-hd-2/laptop-xiaomi-mi-air-13-3-a38511d3d-gl_.jpg"
+            src={product.img}
             alt=""
           />
         </div>
         <div className="rating">
           <Rating
             name="half-rating-read"
-            defaultValue={2.5}
+            defaultValue={product.rating}
             precision={0.5}
             readOnly
           />
         </div>
-        <div className="productName">HUAWEI MATEBOOK D 15</div>
+        <div className="productName">{product.productName}</div>
         <div className="productCount">
-          <span className="count">5.799</span>
+          <span className="count">{product.count}</span>
           <span className="countType">₺</span>
         </div>
         </div>
@@ -45,13 +66,21 @@ const infoToggle=()=>
       <Modal isOpen={modal} toggle={infoToggle} >
         <ModalHeader toggle={infoToggle} className="header"><span>More Information</span></ModalHeader>
         <ModalBody>
-         <Information/>
+         <Information info={product.description}
+           count={product.count}
+           productName={product.productName}
+           img={product.img}
+         />
         </ModalBody>
         <ModalFooter>
           <Button color="danger" onClick={infoToggle}>Close</Button>{' '}
          
         </ModalFooter>
       </Modal>
+      </> 
+      ))
+    }
+      
       
     </div>
   );

@@ -28,10 +28,7 @@ function App() {
                 </div>
                 <div className="cardDesign">
                   <CardDesign />
-                  <CardDesign />
-                  <CardDesign />
-                  <CardDesign />
-                  <CardDesign />
+                
                 </div>
               </div>
             </Route>
