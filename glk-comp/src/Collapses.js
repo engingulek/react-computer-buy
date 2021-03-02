@@ -35,7 +35,7 @@ function Collapses() {
           </button>
           {
             item.subtitle.map((sub)=>(
-              <Collapse isOpen={isOpen}>
+              <Collapse isOpen={true}>
           <div className="card">
             <div className="cardbody">
               <div className="checkboxs">

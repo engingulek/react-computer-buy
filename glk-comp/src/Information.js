@@ -7,6 +7,7 @@ import BookmarkBorderIcon from '@material-ui/icons/BookmarkBorder';;
 function Information({info,count,productName,img}) {
   return (
     <div className="information">
+    {console.log(productName)}
       <div className="informationContainer">
         <div className="infoImg">
           <img src={img}
