@@ -4,8 +4,9 @@ import Rating from "@material-ui/lab/Rating";
 import { Button } from 'reactstrap';
 import { Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import Information from "./Information"
-
 import db from "./firebase"
+import alertify from "alertifyjs"
+
 
 function CardDesign() {
   const [modal, setModal] = useState(false)
@@ -15,6 +16,11 @@ function CardDesign() {
   const [modalProductInfo, setModalProductInfo] = useState("")
   const [modalProductCount, setModalProductCount] = useState("")
   const [modalProductImg, setModalProductImg] = useState("")
+  const [name,setName]=useState("")
+  
+
+  
+  
   
 
 
@@ -24,14 +30,14 @@ function CardDesign() {
     productitem.map((product) => {
 
 
-      if (product.id == id) {
+      if (product.data().id == id) {
 
-        setModalProductName(product.productName)
-        setModalProductRating(product.rating)
-        setModalProductInfo(product.description)
-        setModalProductCount(product.count)
-        setModalProductImg(product.img)
-        setModalProductRating(product.rating)
+        setModalProductName(product.data().productName)
+        setModalProductRating(product.data().rating)
+        setModalProductInfo(product.data().description)
+        setModalProductCount(product.data().count)
+        setModalProductImg(product.data().img)
+        setModalProductRating(product.data().rating)
 
       }
     })
@@ -39,63 +45,34 @@ function CardDesign() {
 
 
   }
+  
 
-
-  const cartproductItems=[]
-  const cart=[]
+  
+  
   const addtoCart = (cartproductadd) => {
-    cart.push(cartproductadd)
-    if (cartproductItems.length===0) {
-      db.collection("cart").add({
-        productId:cartproductadd.id,
-        productName:cartproductadd.productName,
-        productImg:cartproductadd.img,
-        productCount:cartproductadd.count,
-        
-      })
-      console.log("boşken")
-      cartproductItems.push(cartproductadd)
-      
+    
+    
+    db.collection("cart").doc(cartproductadd.id).set({
+      productId:cartproductadd.data().id,
+      productName:cartproductadd.data().productName,
+      productImg:cartproductadd.data().img,
+      productCount:cartproductadd.data().count,
+      productPiece:cartproductadd.data().piece
+    })
+    setName(cartproductadd.data().productName)
+    if (name===cartproductadd.data().productName) {
+      alertify.error("Go to cart for increase")
     }
     else{
-      db.collection("cart")
-      .get()
-      .then((querySnapshot) => {
-          querySnapshot.forEach((doc) => {
-            cartproductItems.push(doc.data().productId)
-          });
-      })
-      
-     const getCart= cartproductItems.find(productt=>productt===cartproductadd.id)
-     if(getCart) {
-     
-      console.log("1 tane var")
-       
-       
-     }
-     else{
-      db.collection("cart").add({
-        productId:cartproductadd.id,
-        productName:cartproductadd.productName,
-        productImg:cartproductadd.img,
-        productCount:cartproductadd.count,
-        
-      })
-      console.log("ilk defa ekliyor")
-
-     }
-
+      alertify.success(cartproductadd.data().productName+" Add to cart")
     }
     
 
     
-   
 
-   
- 
-   
-   
 
+    
+    
   }
 
 
@@ -110,15 +87,20 @@ function CardDesign() {
 
 
   useEffect(() => {
-    db.collection("product").orderBy("id", "asc").onSnapshot((onSnapshot) => {
-      const productItems = []
-      onSnapshot.forEach((product) => {
-        productItems.push(product.data())
 
-      })
+    
+
+     db.collection("product").orderBy("id", "asc").onSnapshot((onSnapshot) => {
+     const productItems = []
+     
+       onSnapshot.forEach((product) => {
+         productItems.push(product)
+         
+
+       })
 
       setProductItem(productItems)
-    })
+     })
 
 
 
@@ -126,33 +108,35 @@ function CardDesign() {
 
 
   return (
+<div>
+
 
     <div className="cardDesign">
       {
-        productitem.map((product, index) => (
+        productitem.map((product,index) => (
           <>
 
             <div key={index}
               className="cardDesignContainer" >
-              <div className="moreinfo" onClick={() => infoToggle(index)} >
+              <div className="moreinfo" onClick={() => infoToggle(product.data().id)} >
 
                 <div className="cartImg">
                   <img
-                    src={product.img}
+                    src={product.data().img}
                     alt=""
                   />
                 </div>
                 <div className="rating">
                   <Rating
                     name="half-rating-read"
-                    defaultValue={product.rating}
+                    defaultValue={product.data().rating}
                     precision={0.5}
                     readOnly
                   />
                 </div>
-                <div className="productName">{product.productName}</div>
+                <div className="productName">{product.data().productName}</div>
                 <div className="productCount">
-                  <span className="count">{product.count}</span>
+                  <span className="count">{product.data().count}</span>
                   <span className="countType">₺</span>
                 </div>
               </div>
@@ -161,7 +145,7 @@ function CardDesign() {
             </Button>
               </div>
             </div>
-
+       
 
             <Modal isOpen={modal} toggle={infoToggle}  >
               <ModalHeader toggle={infoToggle} className="header"><span>More Information</span></ModalHeader>
@@ -190,11 +174,15 @@ function CardDesign() {
 
         ))
       }
+      
 
 
 
 
 
+
+    </div>
+    
     </div>
   );
 }
