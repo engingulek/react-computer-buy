@@ -5,6 +5,7 @@ import {useSelector,useDispatch} from "react-redux"
 
 
 
+
 import {
   Button,
   Modal,
@@ -94,15 +95,25 @@ function Header() {
             </form>
           </div>
           {
-            user ?  <button
+            user ?  
+            
+
+<div>
+
+
+            <button
             onClick={singOut}
-            type="button"
+             type="button"
             className="btn btn-danger"
             data-toggle="modal"
             data-target="#exampleModal"
-          >
-            Exit
-          </button>:
+           >
+             Exit
+           </button>
+           
+           </div>
+          :
+
          ( <button
             onClick={singIn}
             type="button"

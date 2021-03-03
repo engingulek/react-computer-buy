@@ -4,7 +4,7 @@ import "./Information.css"
 import Rating from "@material-ui/lab/Rating"
 import ShareIcon from '@material-ui/icons/Share'
 import BookmarkBorderIcon from '@material-ui/icons/BookmarkBorder';;
-function Information({info,count,productName,img}) {
+function Information({info,count,productName,img,rating}) {
   return (
     <div className="information">
     {console.log(productName)}
@@ -19,7 +19,7 @@ function Information({info,count,productName,img}) {
           <div className="ratingInfo" >
         <Rating
             name="half-rating-read"
-            defaultValue={2.5}
+            defaultValue={rating}
             precision={0.5}
             readOnly
           />
