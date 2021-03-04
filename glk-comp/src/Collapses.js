@@ -15,7 +15,7 @@ function Collapses() {
 
   const toggle = (e) => {
     setIsOpen(!isOpen);
-    console.log(e.target.id);
+    
   };
 
   useEffect(() => {
@@ -29,7 +29,7 @@ function Collapses() {
     });
   
 
-    console.log(filterName)
+    
   }, []);
 
   const selectFilter=(sub)=>{

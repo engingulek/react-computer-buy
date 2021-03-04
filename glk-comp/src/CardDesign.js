@@ -6,6 +6,7 @@ import { Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import Information from "./Information"
 import db from "./firebase"
 import alertify from "alertifyjs"
+import {useSelector} from "react-redux"
 
 
 function CardDesign() {
@@ -17,6 +18,11 @@ function CardDesign() {
   const [modalProductCount, setModalProductCount] = useState("")
   const [modalProductImg, setModalProductImg] = useState("")
   const [cartname,setcartName]=useState([])
+  const {filterName} =useSelector(state=>state.filter)
+  
+  
+  
+
   
 
   
@@ -118,7 +124,7 @@ function CardDesign() {
 
     
 
-     db.collection("product").orderBy("id", "asc").onSnapshot((onSnapshot) => {
+     db.collection("product").where("bransName","==",filterName).onSnapshot((onSnapshot) => {
      const productItems = []
      
        onSnapshot.forEach((product) => {
@@ -132,7 +138,27 @@ function CardDesign() {
 
 
 
-  }, [])
+  }, [filterName])
+
+  useEffect(() => {
+
+    
+
+    db.collection("product").onSnapshot((onSnapshot) => {
+    const productItems = []
+    
+      onSnapshot.forEach((product) => {
+        productItems.push(product)
+        
+
+      })
+
+     setProductItem(productItems)
+    })
+
+
+
+ }, [])
 
 
   return (
