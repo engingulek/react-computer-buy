@@ -2,13 +2,13 @@ import React, { useEffect, useState } from "react";
 import { Collapse } from "reactstrap";
 import {useDispatch, useSelector} from "react-redux"
 import db from "./firebase";
-import { setFiltername } from "./features/filterSlice";
+import { setFilterbransname ,setFilterram} from "./features/filterSlice";
 
 
 function Collapses() {
   const [isOpen, setIsOpen] = useState(false);
   const [filter, setFilter] = useState([]);
-  const {filterName} =useSelector(state=>state.filter)
+  
   const dispatch = useDispatch()
  
  
@@ -32,8 +32,18 @@ function Collapses() {
     
   }, []);
 
-  const selectFilter=(sub)=>{
-   dispatch(setFiltername(sub))
+  const selectFilter=(sub,filtername)=>{
+    
+      dispatch(setFilterbransname(sub))
+      
+    
+
+   
+  
+   
+   
+   
+   
   }
   return (
     <div>
