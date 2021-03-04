@@ -8,11 +8,11 @@ export const filterSlice = createSlice({
 
   reducers: {
     setFiltername: (state, action) => {
-      state.filterName = null;
+      state.filterName = action.payload
     },
   },
 });
 
 export const { setFiltername } = filterSlice.actions;
-export const selectFilterName = (state) => state.filter.filterName;
+
 export default filterSlice.reducer;

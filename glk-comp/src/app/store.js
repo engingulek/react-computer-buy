@@ -5,6 +5,6 @@ import filterReducer from "../features/filterSlice"
 export default configureStore({
   reducer: {
     user: userReducer,
-    filter :filterReducer
+    filter:filterReducer
   },
 });

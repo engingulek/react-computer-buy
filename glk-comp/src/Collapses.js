@@ -1,10 +1,16 @@
 import React, { useEffect, useState } from "react";
 import { Collapse } from "reactstrap";
+import {useDispatch, useSelector} from "react-redux"
 import db from "./firebase";
+import { setFiltername } from "./features/filterSlice";
+
 
 function Collapses() {
   const [isOpen, setIsOpen] = useState(false);
   const [filter, setFilter] = useState([]);
+  const {filterName} =useSelector(state=>state.filter)
+  const dispatch = useDispatch()
+ 
  
 
   const toggle = (e) => {
@@ -21,9 +27,14 @@ function Collapses() {
       });
       setFilter(filternameitem);
     });
+  
 
-    
+    console.log(filterName)
   }, []);
+
+  const selectFilter=(sub)=>{
+   dispatch(setFiltername(sub))
+  }
   return (
     <div>
       <div className="markalar">
@@ -40,16 +51,16 @@ function Collapses() {
             <div className="cardbody">
               <div className="checkboxs">
                 <form>
-                  <div>
+                  <div onClick={()=>selectFilter(sub)}> 
                     <input type="checkbox" name="all" />
-                    <label htmlfor="all">{sub}</label>
+                    <label htmlfor="all"  >{sub}</label>
                   </div>
                 </form>
               </div>
             </div>
           </div>
        
-      </Collapse>
+          </Collapse>
    
 
             ))
