@@ -41,16 +41,22 @@ function CartDesign() {
   
   useEffect(()=>{
     var top=0;
+    var piece=0
     cartProduct.forEach((product)=>{
-      
-     top+=product.productCount*product.productPiece
+      piece =product.productPiece
+     top+=product.productCount*piece
      setcartCount(top)
      
      
     })
     
+    
+    
 
   },[cartProduct])
+
+
+  
 
 
 
@@ -81,7 +87,7 @@ function CartDesign() {
                   <div className="yCartAdet">
 
                     <button>-</button>
-                    <span>1</span>
+                    <span> {cartProductitem.productPiece} </span>
                     <button>+</button>
 
 

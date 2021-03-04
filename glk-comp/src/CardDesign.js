@@ -16,7 +16,7 @@ function CardDesign() {
   const [modalProductInfo, setModalProductInfo] = useState("")
   const [modalProductCount, setModalProductCount] = useState("")
   const [modalProductImg, setModalProductImg] = useState("")
-  const [name,setName]=useState("")
+  const [cartname,setcartName]=useState([])
   
 
   
@@ -50,8 +50,6 @@ function CardDesign() {
   
   
   const addtoCart = (cartproductadd) => {
-    
-    
     db.collection("cart").doc(cartproductadd.id).set({
       productId:cartproductadd.data().id,
       productName:cartproductadd.data().productName,
@@ -59,14 +57,44 @@ function CardDesign() {
       productCount:cartproductadd.data().count,
       productPiece:cartproductadd.data().piece
     })
-    setName(cartproductadd.data().productName)
-    if (name===cartproductadd.data().productName) {
-      alertify.error("Go to cart for increase")
-    }
-    else{
-      alertify.success(cartproductadd.data().productName+" Add to cart")
-    }
     
+    
+
+    
+
+      db.collection("cart").onSnapshot((onSnapshot) => {
+        const cartProduct=[]
+        onSnapshot.forEach((product) => {
+          cartProduct.push(product)
+          
+          
+        })
+        setcartName(cartProduct)
+        
+      })
+
+
+      cartname.map((product)=>{
+        if (product.id!==cartproductadd.id) {
+          console.log("ilk eklendi")
+          
+        }
+
+        else
+        {
+          db.collection("cart").doc(cartproductadd.id).update({
+            productPiece:product.data().productPiece+1
+            
+
+          })
+        }
+      })
+
+      
+      
+
+      
+  
 
     
 
