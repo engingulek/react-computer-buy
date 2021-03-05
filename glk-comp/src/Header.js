@@ -1,8 +1,9 @@
-import React, { useState,useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import SearchIcon from "@material-ui/icons/Search";
 import "./Header.css";
-import {useSelector,useDispatch} from "react-redux"
+import { useSelector, useDispatch } from "react-redux"
 import { setSearchbar } from "./features/filterSlice";
+
 
 
 
@@ -13,7 +14,7 @@ import {
   ModalHeader,
   ModalBody,
   ModalFooter,
-  
+
 } from "reactstrap";
 
 import SingIn from "./SingIn";
@@ -26,63 +27,59 @@ import {
   Link
 } from "react-router-dom";
 import { login, logout, selectUser } from "./features/userSlice";
-import { auth ,providerGoogle} from "./firebase";
+import { auth, providerGoogle } from "./firebase";
 function Header() {
   const [modal, setModal] = useState(false);
-  const [singup,setSingup] =useState(false);
+  const [singup, setSingup] = useState(false);
 
-  const dispatch =useDispatch()
+  const dispatch = useDispatch()
   const toggle = () => {
     setModal(!modal);
-   
+
   }
-  
+
 
   const singIn = () => {
     setModal(!modal);
   };
 
   const singUpB = () => {
-    
+
     setSingup(!singup);
     toggle();
   };
-  const create=()=>
-  {
+  const create = () => {
     setSingup(!singup)
   }
 
   const user = useSelector(selectUser);
-  
+
 
   useEffect(() => {
-  auth.onAuthStateChanged(authUser=>{
-    if(authUser)
-    {
-      dispatch(login({
-        uid : authUser.uid,
-        displayName :authUser.displayName
-      }))
-    }
-    else
-    {
-      dispatch(logout({
-        uid:null,
-        displayName:null
+    auth.onAuthStateChanged(authUser => {
+      if (authUser) {
+        dispatch(login({
+          uid: authUser.uid,
+          displayName: authUser.displayName
+        }))
+      }
+      else {
+        dispatch(logout({
+          uid: null,
+          displayName: null
 
-      }))
-    }
-  })
+        }))
+      }
+    })
   }, [dispatch])
 
-  const singOut=()=>
-  {
-   auth.signOut()
+  const singOut = () => {
+    auth.signOut()
   }
 
-  const searchProduct=(searchP)=>{
+  const searchProduct = (searchP) => {
     dispatch(setSearchbar(searchP))
-    
+
   }
 
   return (
@@ -96,51 +93,51 @@ function Header() {
           <div className="search">
             <form>
               <input type="text"
-              onChange={(e)=>searchProduct(e.target.value)} />
+                onChange={(e) => searchProduct(e.target.value)} />
               <button >
                 <SearchIcon />
               </button>
             </form>
           </div>
           {
-            user ?  
-            
-
-<div>
+            user ?
 
 
-            <button
-            onClick={singOut}
-             type="button"
-            className="btn btn-danger"
-            data-toggle="modal"
-            data-target="#exampleModal"
-           >
-             Exit
+              <div>
+
+
+                <button
+                  onClick={singOut}
+                  type="button"
+                  className="btn btn-danger"
+                  data-toggle="modal"
+                  data-target="#exampleModal"
+                >
+                  Exit
            </button>
-           
-           </div>
-          :
 
-         ( <button
-            onClick={singIn}
-            type="button"
-            className="btn btn-primary"
-            data-toggle="modal"
-            data-target="#exampleModal"
-          >
-           SingIn
-          </button>)
+              </div>
+              :
+
+              (<button
+                onClick={singIn}
+                type="button"
+                className="btn btn-primary"
+                data-toggle="modal"
+                data-target="#exampleModal"
+              >
+                SingIn
+              </button>)
           }
-          
-            
-        
-         
-          
 
 
-         
-          
+
+
+
+
+
+
+
         </div>
         <Modal isOpen={modal} toggle={toggle}>
           <ModalHeader toggle={toggle}>
@@ -149,9 +146,9 @@ function Header() {
             </div>
           </ModalHeader>
           <ModalBody>
-          <SingIn/>
-          
-           
+            <SingIn />
+
+
           </ModalBody>
           <ModalFooter>
             <Button color="secondary" onClick={singUpB}>
@@ -167,25 +164,25 @@ function Header() {
             </div>
           </ModalHeader>
           <ModalBody>
-          <SingUp/>
-          
-          
+            <SingUp />
+
+
           </ModalBody>
           <ModalFooter>
             <Button color="secondary" onClick={create}>
               Create
             </Button>
-             
+
           </ModalFooter>
-         
+
         </Modal>
         <div className="cart">
-        <Button color="success" ><span><Link className="link" to="/cart">Cart</Link></span></Button>
+          <Button color="success" ><span><Link className="link" to="/cart">Cart</Link></span></Button>
         </div>
-       
-       
 
-        
+
+
+
       </div>
     </div>
   );
