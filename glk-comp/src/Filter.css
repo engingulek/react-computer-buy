@@ -25,7 +25,7 @@
 .checkboxs>form
 { 
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
 }
 
 label
@@ -33,7 +33,25 @@ label
     margin-left: 10px;
 }
 
+
 .details
 {
     width: 10px;
+}
+
+.onlyFiltersubname>label
+{
+    color: red;
+    font-size: 12px;
+}
+
+
+.onlyFiltersubname>label:hover
+{
+    font-size: 15px;
+    cursor: pointer;
+}
+
+.checkboxs>form>div>label:hover{
+    cursor: pointer;
 }

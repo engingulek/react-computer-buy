@@ -2,12 +2,15 @@ import React, { useEffect, useState } from "react";
 import { Collapse } from "reactstrap";
 import {useDispatch, useSelector} from "react-redux"
 import db from "./firebase";
-import { setFilterbransname ,setFilterram} from "./features/filterSlice";
+import { setFilterbransname,setFilterremove } from "./features/filterSlice";
+import { Badge } from 'reactstrap';
+
 
 
 function Collapses() {
   const [isOpen, setIsOpen] = useState(false);
   const [filter, setFilter] = useState([]);
+  const [check,setCheck]=useState("")
   
   const dispatch = useDispatch()
  
@@ -32,19 +35,24 @@ function Collapses() {
     
   }, []);
 
-  const selectFilter=(sub,filtername)=>{
+  const selectFilter=(sub)=>{
+
     
       dispatch(setFilterbransname(sub))
       
-    
-
-   
-  
-   
-   
-   
-   
   }
+
+  const removeFilter =(removeSub)=>{
+    dispatch(setFilterremove(removeSub))
+    setCheck(removeSub)
+  
+  }
+
+  const checkedFilter =(sub)=>{
+    setCheck(sub)
+
+  }
+ 
   return (
     <div>
       <div className="markalar">
@@ -61,10 +69,14 @@ function Collapses() {
             <div className="cardbody">
               <div className="checkboxs">
                 <form>
-                  <div onClick={()=>selectFilter(sub)}> 
-                    <input type="checkbox" name="all" />
-                    <label htmlfor="all"  >{sub}</label>
+                  <div onClick={()=>selectFilter(sub)} > 
+                    
+                    <label for={sub}   >{sub}</label>
                   </div>
+                  <div  className="onlyFiltersubname">
+                    <label  onClick={()=>removeFilter(sub)} >sadece</label>
+                  </div>
+                  
                 </form>
               </div>
             </div>

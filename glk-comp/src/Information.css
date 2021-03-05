@@ -43,12 +43,19 @@
 }
 .iconLike{
     padding:2px;
+    
 }
 
 .iconLike:hover
 {
    
     color: red;
+    cursor: pointer;
+}
+.iconLikeClick{
+    color: red;
+}
+.iconLikeClick:hover{
     cursor: pointer;
 }
 

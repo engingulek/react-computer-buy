@@ -17,6 +17,7 @@ function CardDesign() {
   const [modalProductInfo, setModalProductInfo] = useState("")
   const [modalProductCount, setModalProductCount] = useState("")
   const [modalProductImg, setModalProductImg] = useState("")
+  const [modalProductId,setModalProductId]=useState("")
   const [cartname,setcartName]=useState([])
   const {filterbransName} =useSelector(state=>state.filter)
 
@@ -48,6 +49,7 @@ function CardDesign() {
         setModalProductCount(product.data().count)
         setModalProductImg(product.data().img)
         setModalProductRating(product.data().rating)
+        setModalProductId(product.id)
 
       }
     })
@@ -231,6 +233,7 @@ if (filterbransName.length!==0) {
                   productName={modalProductName}
                   img={modalProductImg}
                   rating={modalProductRating}
+                  id={modalProductId}
                 />
               </ModalBody>
               <ModalFooter>
