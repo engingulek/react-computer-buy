@@ -41,3 +41,13 @@
 {
     margin-left:8px;
 }
+.bttn>button
+{
+    border: none;
+    outline-width: none;
+    padding-top: 5px;
+    padding: 5px,5px,5px,5px;
+    width: 370px;
+    margin-top: 20px;
+    background-color: rgba(60, 90, 153, 0.1);
+}
