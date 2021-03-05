@@ -46,6 +46,7 @@ div>form>button
 div>form>button:hover{
     border: none;
     outline: none;
+    cursor: auto;
 }
 .search
 {

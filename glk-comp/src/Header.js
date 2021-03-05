@@ -2,6 +2,7 @@ import React, { useState,useEffect } from "react";
 import SearchIcon from "@material-ui/icons/Search";
 import "./Header.css";
 import {useSelector,useDispatch} from "react-redux"
+import { setSearchbar } from "./features/filterSlice";
 
 
 
@@ -28,7 +29,9 @@ import { login, logout, selectUser } from "./features/userSlice";
 import { auth ,providerGoogle} from "./firebase";
 function Header() {
   const [modal, setModal] = useState(false);
-  const [singup,setSingup] =useState(false)
+  const [singup,setSingup] =useState(false);
+
+  const dispatch =useDispatch()
   const toggle = () => {
     setModal(!modal);
    
@@ -50,7 +53,7 @@ function Header() {
   }
 
   const user = useSelector(selectUser);
-  const dispatch = useDispatch();
+  
 
   useEffect(() => {
   auth.onAuthStateChanged(authUser=>{
@@ -77,6 +80,10 @@ function Header() {
    auth.signOut()
   }
 
+  const searchProduct=(searchP)=>{
+    dispatch(setSearchbar(searchP))
+    
+  }
 
   return (
     <div className="header">
@@ -88,8 +95,9 @@ function Header() {
           </div>
           <div className="search">
             <form>
-              <input type="text" />
-              <button>
+              <input type="text"
+              onChange={(e)=>searchProduct(e.target.value)} />
+              <button >
                 <SearchIcon />
               </button>
             </form>

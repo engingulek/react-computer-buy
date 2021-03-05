@@ -4,6 +4,7 @@ export const filterSlice = createSlice({
   name: "filter",
   initialState: {
     filterbransName:[],
+    searchbar:""
    
     
     
@@ -26,6 +27,10 @@ export const filterSlice = createSlice({
      
    }
 
+    },
+
+    setSearchbar:(state,action)=>{
+      state.searchbar=action.payload
     }
     
       
@@ -43,6 +48,6 @@ export const filterSlice = createSlice({
   },
 });
 
-export const { setFilterbransname,setFilterremove} = filterSlice.actions;
+export const { setFilterbransname,setFilterremove,setSearchbar} = filterSlice.actions;
 
 export default filterSlice.reducer;

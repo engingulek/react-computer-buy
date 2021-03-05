@@ -20,22 +20,7 @@ function CardDesign() {
   const [modalProductId,setModalProductId]=useState("")
   const [cartname,setcartName]=useState([])
   const {filterbransName} =useSelector(state=>state.filter)
-
- 
-  
- 
-  
-  
-  
-
-  
-
-  
-  
-  
-
-
-
+  const {searchbar}=useSelector(state=>state.filter)
   const infoToggle = (id) => {
     setModal(!modal)
     productitem.map((product) => {
@@ -142,21 +127,29 @@ if (filterbransName.length!==0) {
     })
   
 }
-    
-      
-      
-    
-
-  
-
-     
-
-
-     
-
-
   }, [filterbransName])
 
+
+  useEffect(()=>{
+    db.collection("product").onSnapshot((onSnapshot) => {
+      const productItems = []
+      
+        onSnapshot.forEach((product) => {
+          productItems.push(product)
+          
+  
+        })
+        const filterProductItems=productItems.filter((name)=>{
+          return name.data().productName.toLowerCase().includes(searchbar.toLowerCase())
+        })
+  
+       setProductItem(filterProductItems)
+      })
+    
+  }
+    
+
+  ,[searchbar])
 
   
 
