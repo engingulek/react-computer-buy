@@ -17,10 +17,7 @@ function CartDesign() {
     setModal(!modal);
     if (cartProduct.length==0) {
       alert.error("Your Order Has Not Been Confirmed")
-      
-    }
-
-    else{
+}else{
       db.collection("cart")
       .get()
       .then(res => {
@@ -28,11 +25,8 @@ function CartDesign() {
           element.ref.delete();
         });
       });
-      alert.success("Your Order is Confirmed")
-
-    }
-   
-  }
+      alert.success("Your Order is Confirmed")}}
+  
   const noCart =()=>{
     setModal(!modal)
     alert.success("You can continue shopping")
@@ -41,37 +35,14 @@ function CartDesign() {
   const toggle =()=>setModal(!modal)
   
   useEffect(() => {
-    
-
-
-    
     db.collection("cart").onSnapshot((onSnapshot) => {
       const cartproductItems = []
-
       onSnapshot.forEach((product) => {
-        cartproductItems.push(product.data())
-        
-
-
-      })
-
-      setCartProduct(cartproductItems)
-    })
-
-   
-   
-
-    
-    
-
- 
-
-    
-
-
-
-  }, [])
+        cartproductItems.push(product.data())})
+      setCartProduct(cartproductItems)})
+  },[])
   
+
   useEffect(()=>{
     var top=0;
     var piece=0
@@ -79,17 +50,7 @@ function CartDesign() {
       piece =product.productPiece
      top+=product.productCount*piece
      setcartCount(top)
-     
-     
-    })
-    
-    
-    
-
-  },[cartProduct])
-
-
-  
+})},[cartProduct])
 
 const removeCart=(removeProduct)=>{
   db.collection("cart").onSnapshot((onSnapshot)=>{
@@ -97,35 +58,24 @@ const removeCart=(removeProduct)=>{
       if(remove.data().productName===removeProduct)
       {
         setRemoveP(remove.id)
-      }
-    })
-  })
-  if (removeP!=="") {
+      }})})
+
+    if (removeP!=="") {
     db.collection("cart").doc(removeP).delete();
-    
   }
-  
-
 }
-
   return (
     <div className="cartDesign">
       <div className="cartDesingContainer">
         <div className="yourCart">
-
           <div className="yourCartTitle">
             <div className="yourCartTitleHome" >
               <Link to="/" className="linka"><HomeIcon style={{ fontSize: 40 }}/></Link>
-            
             </div>
             <div className="yourCartTitleName">
             <span>Your Cart</span>
             </div>
-
-         
-            
           </div>
-
           {
             cartProduct.map((cartProductitem) => (
               <div className="yCartProduct">
@@ -135,12 +85,8 @@ const removeCart=(removeProduct)=>{
                 <div className="cartProductInfo">
                   <div className="yCartName"> {cartProductitem.productName} </div>
                   <div className="yCartAdet">
-
-                    <button>-</button>
+                    <label>Adet</label>
                     <span> {cartProductitem.productPiece} </span>
-                    <button>+</button>
-
-
                   </div>
                 </div>
                 <div className="yCartProductCount"  > {cartProductitem.productCount*cartProductitem.productPiece} </div>
@@ -148,22 +94,14 @@ const removeCart=(removeProduct)=>{
               </div>
             ))
           }
-
-
-
-
-
-
         </div>
         <div className="orderSummery">
           <div className="oStitle"><span>Order Summery</span></div>
           <div className="total">
             <div className="totalTitle">Toplam</div>
-            
             <div className="totalCount">{cartCount} ₺</div>
           </div>
-          <div className="orderConfir"><Button color="success" onClick={toggle}>Confirm Cart <NavigateNextIcon /></Button></div>
-
+          <div className="orderConfirm"><Button color="success" onClick={toggle}>Confirm Cart <NavigateNextIcon /></Button></div>
         </div>
         <Modal isOpen={modal} toggle={toggle} >
         <ModalHeader toggle={toggle}>Modal title</ModalHeader>
@@ -180,5 +118,4 @@ const removeCart=(removeProduct)=>{
     </div>
   );
 }
-
 export default CartDesign;

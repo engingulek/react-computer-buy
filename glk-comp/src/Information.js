@@ -9,25 +9,20 @@ import FavoriteIcon from '@material-ui/icons/Favorite';
 import BookmarkIcon from '@material-ui/icons/Bookmark';
 
 function Information({info,count,productName,img,rating,id}) {
- 
   const [list,setList]=useState(false)
   const [like,setLike]=useState(false)
-const likeItems=[]
+  const likeItems=[]
 
-  
-
-  
   const addLike=(productName,count,img,id)=>{
     db.collection("like").doc(id).set({
       likeProductName:productName,
       likeCount:count,
       likeImg:img
-      
     })
     likeItems.push(id)
     setLike(true)
-
   }
+
   const removeLike=(id)=>{
     db.collection("like").doc(id).delete();
     setLike(false)
@@ -38,7 +33,6 @@ const likeItems=[]
       shareProductName:productName,
       shareCount:count,
       shareImg:img
-      
     })
   }
 
@@ -47,7 +41,6 @@ const likeItems=[]
       listProductName:productName,
       listCount:count,
       listImg:img
-      
     })
     setList(true)
   }
@@ -57,17 +50,14 @@ const likeItems=[]
     setList(false)
   }
 
-
   return (
     <div className="information">
-    {console.log(productName)}
       <div className="informationContainer">
         <div className="infoImg">
           <img src={img}
           alt="laptop" />
         </div>
         <div className="prdoductInfo">
-       
           <div className="productNameInfo">{productName}</div>
           <div className="ratingInfo" >
         <Rating
@@ -86,15 +76,11 @@ const likeItems=[]
           like==false?<div className="iconLike" onClick={()=>addLike(productName,count,img,id)}><FavoriteBorderIcon/></div>:
           <div className="iconLikeClick" onClick={()=>removeLike(id)}> <FavoriteIcon/> </div>
         }
-       
         <div className="iconShare" onClick={()=>addShare(productName,count,img,id)}><ShareIcon /></div>
         {
           list==false?<div className="addList" onClick={()=>addList(productName,count,img,id)}><BookmarkBorderIcon/></div>:
           <div className="addList" onClick={()=>removeList(id)}><BookmarkIcon/></div>
-
-
-        }
-        
+        }  
       </div>
     </div>
   );

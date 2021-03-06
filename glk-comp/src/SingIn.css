@@ -1,58 +1,46 @@
-.modaltitle
-{
+.modaltitle{
     color: blue;
     font-size: 20px;
     font-weight: 1400;
-
 }
-.singIn__container
-{
+
+.singIn__container{
     display: flex;
     align-items: center;
     justify-content: center;
-    
-
 }
-.singIn
-{
+
+.singIn{
     display: flex;
     flex-direction: column;
 }
-.phoneNumberCont
-{
+
+.phoneNumberCont{
     display: flex;
     flex-direction: column;
     align-items: center;
     margin-top: 10px;
 }
-.phoneNumberCont>div>select
-{
-    
+
+.phoneNumberCont>div>select{
     height: 40px;
-    cursor: pointer;
-    
-   
-   
-    
+    cursor: pointer; 
 }
 
-.phoneNumberCont>div>div>input,.phoneNumberCont>div>div>label
-{
+.phoneNumberCont>div>div>input,.phoneNumberCont>div>div>label{
     margin-left: 25px;
     height: 40px;
     padding-left: 10px;
     display: flex;
-    justify-content: center;
-    
+    justify-content: center;  
 }
-.phoneNumberCont>div>div>label
-{
+
+.phoneNumberCont>div>div>label{
     margin-top: 10px;
     font-size: large;
 }
 
-.bttn>button
-{
+.bttn>button{
     border: none;
     outline-width: none;
     padding-top: 5px;

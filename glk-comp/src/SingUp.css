@@ -1,34 +1,26 @@
-.modaltitle
-{
+.modaltitle{
     color: blue;
     font-size: 20px;
-
 }
 
-.singIn__container
-{
+.singIn__container{
     display: flex;
     align-items: center;
     justify-content: center;
-    
-
 }
-.singIn
-{
+.singIn{
     display: flex;
     flex-direction: column;
 }
 
-.title
-{
+.title{
     color: black;
     font-weight: 950px;
     font-size: 23px;
     margin-bottom: 5px;
 }
 
-.singInForm>form>div
-{
+.singInForm>form>div{
     display: flex;
     flex-direction: column;
 }
@@ -37,12 +29,12 @@
     font-size: 16px;
     margin-top: 2px;
 }
-.termsofUse>div>label
-{
+
+.termsofUse>div>label{
     margin-left:8px;
 }
-.bttn>button
-{
+
+.bttn>button{
     border: none;
     outline-width: none;
     padding-top: 5px;

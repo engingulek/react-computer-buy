@@ -7,17 +7,12 @@ function SingUp() {
   const [accountemail,setAccountemail]=useState("")
   const [accountpassword,setAccountpassword]=useState("")
   const [accountpasswordAgain,setAccountpasswordAgain]=useState("")
-
   const createAccount =(e)=>{
     e.preventDefault()
-
-    
-
     if (accountpassword===accountpasswordAgain) {
       if(accountnameSurname==="" ||accountemail===""||accountpassword===""|| accountpasswordAgain==="")  {
         alert.error("Fill in the empty")
       }
-
       else(
         db.collection("account").doc(accountnameSurname).set({
           nameSurname:accountnameSurname,
@@ -25,25 +20,18 @@ function SingUp() {
           password:accountpassword,
         })
       )
-    }
-    
-    else(
+    }else(
       alert.error("Match password do not")
-      
     )
     
   }
-
   const nameSurname=(namesurname)=>{
-    
     setAccountnameSurname(namesurname)
   }
   const email=(emaill)=>{
-    
     setAccountemail(emaill)
   }
   const password=(passwordd)=>{
-    
     setAccountpassword(passwordd)
   }
   const passwordAgain=(passwordagain)=>{
@@ -67,32 +55,22 @@ function SingUp() {
                 <input type="text" onChange={(e)=>email(e.target.value)} />
               </div>
               <div className="password">
-                
                   <label>Password</label>
                   <input type="password" onChange={(e)=>password(e.target.value)} />
-                
-                
                   <label>Password Again</label>
                   <input type="password" onChange={(e)=>passwordAgain(e.target.value)} />
-                
               </div>
               <div className="termsofUse">
               <div>
               <input type="checkbox" />
               <label>Kullanım Koşullarını Okudum Kabul Ediyorum</label>
-
               </div>
-              
             </div>
               <div className="createButton bttn">
                 <button onClick={createAccount}>Create Account</button>
               </div>
-            
-              
             </form>
-            
           </div>
-          
         </div>
       </div>
     )

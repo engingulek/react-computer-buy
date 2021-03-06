@@ -3,57 +3,43 @@ import SearchIcon from "@material-ui/icons/Search";
 import "./Header.css";
 import { useSelector, useDispatch } from "react-redux"
 import { setSearchbar } from "./features/filterSlice";
-
-
-
-
-
 import {
   Button,
   Modal,
   ModalHeader,
   ModalBody,
   ModalFooter,
-
 } from "reactstrap";
-
 import SingIn from "./SingIn";
 import SingUp from "./SingUp";
-
 import {
   BrowserRouter as Router,
-  Switch,
-  Route,
   Link
 } from "react-router-dom";
 import { login, logout, selectUser } from "./features/userSlice";
-import { auth, providerGoogle } from "./firebase";
+import { auth} from "./firebase";
 function Header() {
   const [modal, setModal] = useState(false);
   const [singup, setSingup] = useState(false);
-
   const dispatch = useDispatch()
   const toggle = () => {
     setModal(!modal);
-
-  }
-
+}
 
   const singIn = () => {
     setModal(!modal);
   };
 
   const singUpB = () => {
-
     setSingup(!singup);
     toggle();
   };
+
   const create = () => {
     setSingup(!singup)
   }
 
   const user = useSelector(selectUser);
-
 
   useEffect(() => {
     auth.onAuthStateChanged(authUser => {
@@ -67,7 +53,6 @@ function Header() {
         dispatch(logout({
           uid: null,
           displayName: null
-
         }))
       }
     })
@@ -79,7 +64,6 @@ function Header() {
 
   const searchProduct = (searchP) => {
     dispatch(setSearchbar(searchP))
-
   }
 
   return (
@@ -87,8 +71,9 @@ function Header() {
       <div className="header__contaiber">
         <div className="navbar">
           <div className="title">
+            <Link className="link" to="/"> 
             <span className="glk">Glk</span>
-            <span className="comp">computer</span>
+            <span className="comp">computer</span></Link>
           </div>
           <div className="search">
             <form>
@@ -101,11 +86,7 @@ function Header() {
           </div>
           {
             user ?
-
-
               <div>
-
-
                 <button
                   onClick={singOut}
                   type="button"
@@ -115,10 +96,8 @@ function Header() {
                 >
                   Exit
            </button>
-
               </div>
               :
-
               (<button
                 onClick={singIn}
                 type="button"
@@ -129,15 +108,6 @@ function Header() {
                 SingIn
               </button>)
           }
-
-
-
-
-
-
-
-
-
         </div>
         <Modal isOpen={modal} toggle={toggle}>
           <ModalHeader toggle={toggle}>
@@ -147,8 +117,6 @@ function Header() {
           </ModalHeader>
           <ModalBody>
             <SingIn />
-
-
           </ModalBody>
           <ModalFooter>
             <Button color="secondary" onClick={singUpB}>
@@ -156,7 +124,6 @@ function Header() {
             </Button>
           </ModalFooter>
         </Modal>
-
         <Modal isOpen={singup} toggle={create}>
           <ModalHeader toggle={create}>
             <div className="modaltitle">
@@ -165,27 +132,18 @@ function Header() {
           </ModalHeader>
           <ModalBody>
             <SingUp />
-
-
           </ModalBody>
           <ModalFooter>
             <Button color="secondary" onClick={create}>
               Create
             </Button>
-
           </ModalFooter>
-
         </Modal>
         <div className="cart">
           <Button color="success" ><span><Link className="link" to="/cart">Cart</Link></span></Button>
         </div>
-
-
-
-
       </div>
     </div>
   );
 }
-
 export default Header;

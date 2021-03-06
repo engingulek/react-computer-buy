@@ -1,53 +1,42 @@
-.collapseButton
-{
+.collapseButton{
     border: none;
     outline-width: none;
     padding-top: 5px;
-    
     width: 160px;
     margin-top: 20px;
     background-color: rgba(60, 90, 153, 0.1);
-
 }
 
-.card
-{
+.card{
     width: 160px;
-    
-    
 }
 
-.checkboxs
-{
+.checkboxs{
     margin-top: 10px;
     margin-left: 12px;
 }
-.checkboxs>form
-{ 
+
+.checkboxs>form{ 
     display: flex;
     flex-direction: row;
 }
 
-label
-{
+label{
     margin-left: 10px;
 }
 
 
-.details
-{
+.details{
     width: 10px;
 }
 
-.onlyFiltersubname>label
-{
+.onlyFiltersubname>label{
     color: red;
     font-size: 12px;
 }
 
 
-.onlyFiltersubname>label:hover
-{
+.onlyFiltersubname>label:hover{
     font-size: 15px;
     cursor: pointer;
 }

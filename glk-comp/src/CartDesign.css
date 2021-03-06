@@ -1,34 +1,30 @@
-.yourCart
-{
+.yourCart{
     display: flex;
-    flex-direction: column;
-    
+    flex-direction: column; 
 }
+
 .cartDesingContainer{
     display: flex;
     flex-direction: row;
 }
-.yourCartTitle
-{
+
+.yourCartTitle{
     background-color: gainsboro;
     width: 900px;
     margin-left: 70px;
     margin-top: 20px;
-
 }
 
-.yourCartTitleName>span
-{
+.yourCartTitleName>span{
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 30px;
     padding-top: 10px;
     padding-bottom: 10px;
-    
 }
-.yourCartTitleHome
-{
+
+.yourCartTitleHome{
     display: flex;
     justify-content: left;
     align-items: center;
@@ -42,9 +38,7 @@
     cursor: pointer;
 }
 
-
-.yCartProduct
-{
+.yCartProduct{
     display: flex;
     flex-direction: row;
     width: 900px;
@@ -52,73 +46,64 @@
     margin-top: 30px;
     border: 1px solid gray;
     margin-left: 70px;
-    
-    
-    
 }
 
-
-.yCartImg>img
-{
+.yCartImg>img{
     width: 130px;
     height: 120px;
-    margin-top: 10px;
-    margin-bottom: 10px;
+    margin: 10px 0px 10px;
 }
 
-.cartProductInfo
-{
+.cartProductInfo{
    margin-top: 30px;
    font-size: 20px;
 }
+
 .yCartAdet{
     display: flex;
     margin-top: 13px;
-    
     justify-content: center;
-    
 }
+
 .yCartProductCount{
     margin-top: 30px;
     font-size: 20px;
 }
-.yCartProductRemove
-{
+
+.yCartProductRemove{
     margin-top: 30px;
 }
-.yCartAdet>button
-{
+
+.yCartAdet>button{
     border: none;
     outline-width: 0px;
 }
-.yCartAdet>span
-{
+
+.yCartAdet>span{
     border: 1px solid gainsboro;
     padding-right: 10px;
     padding-left: 10px;
+    margin-left: 10px;
 }
 
-.orderSummery
-{
+.orderSummery{
     margin-top: 20px;
     margin-left: 30px;
     border: 1px solid gainsboro;
     padding-left: 50px;
     padding-right: 50px;
-    font-size: 20px;
-    
+    font-size: 20px;   
 }
 
-.oStitle>span
-{
+.oStitle>span{
     font-weight: 700;
 }
+
 .oStitle{
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-top: 20px;
-   
+    margin-top: 20px; 
 }
 
 .total{
@@ -130,7 +115,7 @@
 }
 
 
-.orderConfir{
+.orderConfirm{
     margin-top: 30px;
     display: flex;
     justify-content: center;

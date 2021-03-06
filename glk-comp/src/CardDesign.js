@@ -24,10 +24,7 @@ function CardDesign() {
   const infoToggle = (id) => {
     setModal(!modal)
     productitem.map((product) => {
-
-
-      if (product.data().id == id) {
-
+   if (product.data().id == id) {
         setModalProductName(product.data().productName)
         setModalProductRating(product.data().rating)
         setModalProductInfo(product.data().description)
@@ -35,16 +32,8 @@ function CardDesign() {
         setModalProductImg(product.data().img)
         setModalProductRating(product.data().rating)
         setModalProductId(product.id)
-
       }
-    })
-
-
-
-  }
-  
-
-  
+    }) }
   
   const addtoCart = (cartproductadd) => {
     db.collection("cart").doc(cartproductadd.id).set({
@@ -54,143 +43,63 @@ function CardDesign() {
       productCount:cartproductadd.data().count,
       productPiece:cartproductadd.data().piece
     })
-    
-    
-
-    
-
       db.collection("cart").onSnapshot((onSnapshot) => {
         const cartProduct=[]
         onSnapshot.forEach((product) => {
-          cartProduct.push(product)
-          
-          
-        })
-        setcartName(cartProduct)
-        
-      })
-
-
+          cartProduct.push(product)})
+        setcartName(cartProduct)})
       cartname.map((product)=>{
         if (product.id!==cartproductadd.id) {
           console.log("ilk eklendi")
-          
-        }
-
-        else
-        {
+        }else{
           db.collection("cart").doc(cartproductadd.id).update({
             productPiece:product.data().productPiece+1
-            
-
-          })
-        }
-      })
-
-      
-      
-
-      
-  
-
-    
-
-
-    
-    
-  }
-
-
-
-
-
-
-
-
-
-
+          })}
+      })}
 
 
   useEffect(() => {
-
 if (filterbransName.length!==0) {
   db.collection("product").where("bransName","in",filterbransName).onSnapshot((onSnapshot) => {
     const productItems = []
-    
       onSnapshot.forEach((product) => {
         productItems.push(product)
-        
-
       })
-
      setProductItem(productItems)
-    })
-  
-}
+    })}
   }, [filterbransName])
-
 
   useEffect(()=>{
     db.collection("product").onSnapshot((onSnapshot) => {
       const productItems = []
-      
         onSnapshot.forEach((product) => {
-          productItems.push(product)
-          
-  
-        })
+          productItems.push(product)})
         const filterProductItems=productItems.filter((name)=>{
           return name.data().productName.toLowerCase().includes(searchbar.toLowerCase())
         })
-  
        setProductItem(filterProductItems)
       })
-    
-  }
-    
-
-  ,[searchbar])
-
-  
-
-
-  
- 
+  },[searchbar])
 
   useEffect(() => {
-
-    
-
     db.collection("product").onSnapshot((onSnapshot) => {
     const productItems = []
-    
       onSnapshot.forEach((product) => {
         productItems.push(product)
-        
-
-      })
-
+        })
      setProductItem(productItems)
     })
-
-
-
  }, [])
-
 
   return (
 <div>
-
-
     <div className="cardDesign">
       {
         productitem.map((product,index) => (
           <>
-
             <div key={index}
               className="cardDesignContainer" >
               <div className="moreinfo" onClick={() => infoToggle(product.data().id)} >
-
                 <div className="cartImg">
                   <img
                     src={product.data().img}
@@ -216,8 +125,6 @@ if (filterbransName.length!==0) {
             </Button>
               </div>
             </div>
-       
-
             <Modal isOpen={modal} toggle={infoToggle}  >
               <ModalHeader toggle={infoToggle} className="header"><span>More Information</span></ModalHeader>
               <ModalBody>
@@ -230,31 +137,13 @@ if (filterbransName.length!==0) {
                 />
               </ModalBody>
               <ModalFooter>
-                <Button color="danger" onClick={infoToggle}>Close</Button>{' '}
-
+                <Button color="danger" onClick={infoToggle}>Close</Button>
               </ModalFooter>
-
-
             </Modal>
-
-
-
-
-
           </>
-
-
         ))
       }
-      
-
-
-
-
-
-
     </div>
-    
     </div>
   );
 }
