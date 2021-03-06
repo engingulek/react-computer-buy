@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, {useState } from "react";
 import db from "./firebase"
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import "./Information.css"
